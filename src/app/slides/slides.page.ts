@@ -12,4 +12,7 @@ export class SlidesPage implements OnInit {
   ngOnInit() {
   }
 
+  list() {
+  	console.log("heuhd");
+  }
 }
