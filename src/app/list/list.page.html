@@ -8,38 +8,21 @@
 
   <ion-list>
 
-    <ion-card>
+    <ion-card *ngFor = "let card of listElem">
 
       <ion-card-header>
-          <ion-icon style = "float: right; margin-top: 8px; font-size: 20px; " name="trash"></ion-icon>
-        <ion-card-title>Faxinar a casa</ion-card-title>
-        <ion-progress-bar style = "margin-top: 10px;" value = "0.5"></ion-progress-bar>
+        <ion-icon *ngIf="!card.expanded" style = "float: right; font-size: 30px;"(click)="expandCard(card.id)" name="add"></ion-icon>
+        <ion-icon *ngIf="card.expanded" style = "float: right; font-size: 30px;"(click)="expandCard(card.id)" name="remove"></ion-icon>
+        <ion-card-title>{{card.title}}</ion-card-title>
       </ion-card-header>
 
-      <ion-card-content style = "margin-top: -20px;">
+      <ion-card-content *ngIf = "card.expanded" style = "margin-top: -20px;">
         <ion-list style="background-color: #ffff">
 
-          <ion-item>
-            <ion-checkbox color="secondary"></ion-checkbox>
-            <ion-label style="margin-left: 5px;">Lavar pratos</ion-label>
+          <ion-item *ngFor = "let item of card.items">
+            <ion-checkbox color="secondary" checked="{{ item.checked }}"></ion-checkbox>
+            <ion-label style="margin-left: 5px;">{{ item.name }}</ion-label>
           </ion-item>
-
-          <ion-item>
-            <ion-checkbox color="secondary"></ion-checkbox>
-            <ion-label style="margin-left: 5px;">Lavar roupas</ion-label>
-          </ion-item>
-
-          <ion-item>
-            <ion-checkbox color="secondary"></ion-checkbox>
-            <ion-label style="margin-left: 5px;">Lavar banheiro</ion-label>
-          </ion-item>
-
-          <ion-item>
-            <ion-checkbox color="secondary"></ion-checkbox>
-            <ion-label style="margin-left: 5px;">Varrer o chão</ion-label>
-          </ion-item>
-
-
 
         </ion-list>
       </ion-card-content>
@@ -50,7 +33,7 @@
   </ion-list>
 
   <ion-fab vertical="bottom" horizontal="end" slot="fixed">
-    <ion-fab-button color="secondary">
+    <ion-fab-button routerLink="/create" color="secondary">
       <ion-icon name="add"></ion-icon>
     </ion-fab-button>
   </ion-fab>
