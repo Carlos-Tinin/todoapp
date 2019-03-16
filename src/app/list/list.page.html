@@ -1,41 +1,60 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title style = "float: right">TodoApp</ion-title>
+  <ion-toolbar color="secondary">
+    <ion-title style="float: right">My to do list</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content color = "medium" padding>
+<ion-content padding>
 
-  <ion-list color = "medium">
-   
-    <ion-card>
-
-      <ion-card-header>
-        Título da atividade
-      </ion-card-header>
-    
-      <ion-card-content>
-        Descrição da atividade
-      </ion-card-content>
-    
-    </ion-card>
+  <ion-list>
 
     <ion-card>
 
       <ion-card-header>
-        Título da atividade
+          <ion-icon style = "float: right; margin-top: 8px; font-size: 20px; " name="trash"></ion-icon>
+        <ion-card-title>Faxinar a casa</ion-card-title>
+        <ion-progress-bar style = "margin-top: 10px;" value = "0.5"></ion-progress-bar>
       </ion-card-header>
-    
-      <ion-card-content>
-        Descrição da atividade
+
+      <ion-card-content style = "margin-top: -20px;">
+        <ion-list style="background-color: #ffff">
+
+          <ion-item>
+            <ion-checkbox color="secondary"></ion-checkbox>
+            <ion-label style="margin-left: 5px;">Lavar pratos</ion-label>
+          </ion-item>
+
+          <ion-item>
+            <ion-checkbox color="secondary"></ion-checkbox>
+            <ion-label style="margin-left: 5px;">Lavar roupas</ion-label>
+          </ion-item>
+
+          <ion-item>
+            <ion-checkbox color="secondary"></ion-checkbox>
+            <ion-label style="margin-left: 5px;">Lavar banheiro</ion-label>
+          </ion-item>
+
+          <ion-item>
+            <ion-checkbox color="secondary"></ion-checkbox>
+            <ion-label style="margin-left: 5px;">Varrer o chão</ion-label>
+          </ion-item>
+
+
+
+        </ion-list>
       </ion-card-content>
-    
+
     </ion-card>
+
 
   </ion-list>
-  
 
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button color="secondary">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
 
-
+  <div style = "margin-top: 60px;"></div>
 
 </ion-content>
