@@ -2,10 +2,10 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'slides', pathMatch: 'full' },
+  { path: '', redirectTo: 'list', pathMatch: 'full' },
   { path: 'home', loadChildren: './home/home.module#HomePageModule' },
-  { path: 'slides', loadChildren: './slides/slides.module#SlidesPageModule' },
-  { path: 'list', loadChildren: './list/list.module#ListPageModule' }
+  { path: 'list', loadChildren: './list/list.module#ListPageModule' },
+  { path: 'create', loadChildren: './create/create.module#CreatePageModule' }
 ];
 
 @NgModule({
