@@ -6,14 +6,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./list.page.scss'],
 })
 export class ListPage implements OnInit {
-  listElem: any[] = [];
+  tasks: any[] = [];
 
   constructor() { 
-  	this.listElem = [
+  	this.tasks = [
 			{ "id": 0,
 			"expanded": false,
 	  	  "title": "Fazer atividade física", 
-		  "items": [
+		  "subtasks": [
 			 {"name": "feijão", "checked": false},
 			 {"name": "açucar", "checked": false}
 		  ]
@@ -21,7 +21,7 @@ export class ListPage implements OnInit {
 		{ "id": 1,
 	  	"expanded": false,
 	  	  "title": "compras", 
-		  "items": [
+		  "subtasks": [
 			 {"name": "feijão", "checked": false},
 			 {"name": "açucar", "checked": false}
 		  ]
@@ -31,15 +31,15 @@ export class ListPage implements OnInit {
 	
 	calculateCardProgressBar(id){
 		let count = 0;
-		for (let index = 0; index < this.listElem[id].items.length; index++) {
-			if(this.listElem[id].items[index].checked == true){
+		for (let index = 0; index < this.tasks[id].subtasks.length; index++) {
+			if(this.tasks[id].subtasks[index].checked == true){
 				count++;
 			}		
 		}
 		let calc;
 		console.log (count);
-		console.log (this.listElem[id].items.length);
-		calc = count/this.listElem[id].items.length;
+		console.log (this.tasks[id].subtasks.length);
+		calc = count/this.tasks[id].subtasks.length;
 		return calc;
 	}
 
@@ -48,17 +48,17 @@ export class ListPage implements OnInit {
 
 	deleteTask(id){
 		if (id > -1){
-			this.listElem.splice (id,1);	
+			this.tasks.splice (id,1);	
 		}
 		console.log ("delete");
 	}
 
   expandCard(id){
-    if (this.listElem[id].expanded == true){
-      this.listElem[id].expanded = false;
+    if (this.tasks[id].expanded == true){
+      this.tasks[id].expanded = false;
       console.log("fecho");
     }else {
-      this.listElem[id].expanded = true;
+      this.tasks[id].expanded = true;
       console.log("abriu");
     }
   }
