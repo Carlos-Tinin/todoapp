@@ -19,7 +19,7 @@
             <ion-icon *ngIf="card.expanded" name="remove"></ion-icon>
           </div>       
           
-          <ion-progress-bar style = "margin-top: 20px;" value="0.5"></ion-progress-bar>
+          <ion-progress-bar style = "margin-top: 20px;" value="{{calculateCardProgressBar(card.id)}}"></ion-progress-bar>
 
       </ion-card-header>
 
@@ -27,7 +27,7 @@
         <ion-list style="background-color: #ffff">
 
           <ion-item *ngFor = "let item of card.items">
-            <ion-checkbox color="secondary" checked="{{ item.checked }}"></ion-checkbox>
+            <ion-checkbox color="secondary" [(ngModel)]="item.checked"></ion-checkbox>
             <ion-label style="margin-left: 5px;">{{ item.name }}</ion-label>
           </ion-item>
 

@@ -11,25 +11,37 @@ export class ListPage implements OnInit {
 
   constructor() { 
   	this.listElem = [
-	  	{ "id": 0,
-	  	  "expanded": false,
+			{ "id": 0,
 	  	  "title": "compras", 
 		  "items": [
-			 {"name": "feijão", "checked": true},
+			 {"name": "feijão", "checked": false},
 			 {"name": "açucar", "checked": false}
 		  ]
 		},
 		{ "id": 1,
-	  	  "expanded": false,
 	  	  "title": "compras", 
 		  "items": [
-			 {"name": "feijão", "checked": true},
+			 {"name": "feijão", "checked": false},
 			 {"name": "açucar", "checked": false}
 		  ]
 		}
   	];
   	this.expanded = false;
-  }
+	}
+	
+	calculateCardProgressBar(id){
+		let count = 0;
+		for (let index = 0; index < this.listElem[id].items.length; index++) {
+			if(this.listElem[id].items[index].checked == true){
+				count++;
+			}		
+		}
+		let calc;
+		console.log (count);
+		console.log (this.listElem[id].items.length);
+		calc = count/this.listElem[id].items.length;
+		return calc;
+	}
 
   ngOnInit() {
   }
