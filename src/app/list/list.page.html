@@ -12,7 +12,7 @@
 
       <ion-card-header>
           
-        <b>{{task.title}}</b>
+        <b>{{ task.title }}</b>
         <ion-icon (click) = "deleteTask()" style = "margin-bottom: -3px; margin-left: 4px; font-size: 15px;" *ngIf="task.expanded" name="trash"></ion-icon>
   
           <div style = "float: right; font-size: 20px;" (click)="expandCard(task.id)">
@@ -20,14 +20,14 @@
             <ion-icon *ngIf="task.expanded" name="remove"></ion-icon>
           </div>       
           
-          <ion-progress-bar style = "margin-top: 20px;" value="{{calculateCardProgressBar(task.id)}}"></ion-progress-bar>
+          <ion-progress-bar style = "margin-top: 20px;" value="{{ calculateCardProgressBar(task.id) }}"></ion-progress-bar>
 
       </ion-card-header>
 
       <ion-card-content *ngIf = "task.expanded" style = "margin-top: -10px;">
         <ion-list style="background-color: #ffff">
 
-          <ion-item *ngFor = "let subtask of task.subtasks">
+          <ion-item *ngFor = "let subtask of task.subTasks">
             <ion-checkbox color="secondary" [(ngModel)]="subtask.checked"></ion-checkbox>
             <ion-label style="margin-left: 5px;">{{ subtask.name }}</ion-label>
           </ion-item>

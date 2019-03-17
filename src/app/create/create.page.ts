@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
+import { Task } from '../model/task'
+
 import { Storage } from '@ionic/storage';
 
 @Component({
@@ -7,12 +9,16 @@ import { Storage } from '@ionic/storage';
   templateUrl: './create.page.html',
   styleUrls: ['./create.page.scss'],
 })
+
 export class CreatePage implements OnInit {
   
-  subtasks: any[] = [" "];
- 
+  public subtasks: any[] = [" "];
+  public task: Task = new Task(3);
+
   constructor(private storage: Storage) {
-      
+    this.storage.length().then((result) => {
+      console.log(result);
+    });
   }
 
   ngOnInit() {
@@ -22,8 +28,8 @@ export class CreatePage implements OnInit {
     this.subtasks.push(" ");
   }
 
-  create(title: string, items: any[]) {
-  	this.storage.set(title, items);
+  createTask(title: string, items: any[]) {
+    this.storage.set("" + this.task.id + "", this.task);
   }
 
 }

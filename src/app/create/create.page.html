@@ -11,28 +11,37 @@
 
 	<ion-card>
 	
-		<form action="">
+		<form #taskForm="ngForm">
+			<ion-item>
+				<ion-input
+					type="number" 
+					required
+           			[(ngModel)] = "task.id" 
+           			name="id"
+          			#name="ngModel" placeholder="Id">
+				</ion-input>
+			</ion-item>
 			<ion-item>				
-					<ion-input placeholder="Task name"></ion-input>
+				<ion-input 
+					type="text" 
+					required
+           			[(ngModel)] = "task.title" 
+           			name="name"
+          			#name="ngModel" placeholder="Task name">
+          		</ion-input>
 			</ion-item>
 
-			<ion-item *ngFor = "let subtask of subtasks">	
-					<ion-icon name="arrow-dropright"></ion-icon>			
-					<ion-input placeholder="Subtask name"></ion-input>
+			<ion-item *ngFor = "let subtask of subtasks; let i=index">	
+				<ion-icon name="arrow-dropright"></ion-icon>			
+				<ion-input placeholder="Subtask name"></ion-input>
 			</ion-item>
-
 		</form>
 	</ion-card>
 	<ion-button (click) = "addSubTask()" shape = "round" expand="full" color="secondary">Add subtask</ion-button>
-		
-		
-
 
 	<ion-fab vertical="bottom" horizontal="end" slot="fixed">
-			<ion-fab-button routerLink="/list" color="secondary">
-				<ion-icon name="checkmark"></ion-icon>
-			</ion-fab-button>
+		<ion-fab-button (click) = "createTask()" routerLink="/list" color="secondary">
+			<ion-icon name="checkmark"></ion-icon>
+		</ion-fab-button>
 	</ion-fab>
-
-
 </ion-content>
