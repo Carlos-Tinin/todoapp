@@ -7,18 +7,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ListPage implements OnInit {
   listElem: any[] = [];
-  expanded:boolean;
 
   constructor() { 
   	this.listElem = [
 			{ "id": 0,
-	  	  "title": "compras", 
+			"expanded": false,
+	  	  "title": "Fazer atividade física", 
 		  "items": [
 			 {"name": "feijão", "checked": false},
 			 {"name": "açucar", "checked": false}
 		  ]
 		},
 		{ "id": 1,
+	  	"expanded": false,
 	  	  "title": "compras", 
 		  "items": [
 			 {"name": "feijão", "checked": false},
@@ -26,7 +27,6 @@ export class ListPage implements OnInit {
 		  ]
 		}
   	];
-  	this.expanded = false;
 	}
 	
 	calculateCardProgressBar(id){
@@ -44,7 +44,14 @@ export class ListPage implements OnInit {
 	}
 
   ngOnInit() {
-  }
+	}
+
+	deleteTask(id){
+		if (id > -1){
+			this.listElem.splice (id,1);	
+		}
+		console.log ("delete");
+	}
 
   expandCard(id){
     if (this.listElem[id].expanded == true){
