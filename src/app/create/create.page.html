@@ -1,21 +1,38 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>Cadastrar uma atividade</ion-title>
-  </ion-toolbar>
+	<ion-toolbar color="secondary">
+		<ion-buttons slot="start">
+			<ion-back-button></ion-back-button>
+		</ion-buttons>
+		<ion-title style="float: right;">Create a new task</ion-title>
+	</ion-toolbar>
 </ion-header>
 
 <ion-content padding>
-	<form action="">
-		<ion-item>
-		  <ion-label position="floating">Título</ion-label>
-		  <ion-input></ion-input>
-		</ion-item>
-		<ion-text>
-			<h2>Itens: </h2>
-		</ion-text>
+
+	<ion-card>
+	
+		<form action="">
+			<ion-item>				
+					<ion-input placeholder="Task name"></ion-input>
+			</ion-item>
+
+			<ion-item *ngFor = "let subtask of subtasks">	
+					<ion-icon name="arrow-dropright"></ion-icon>			
+					<ion-input placeholder="Subtask name"></ion-input>
+			</ion-item>
+
+		</form>
+	</ion-card>
+	<ion-button (click) = "addSubTask()" shape = "round" expand="full" color="secondary">Add subtask</ion-button>
 		
-		<!-- <ion-item>
-			<ion-input></ion-input>
-		</ion-item> -->
-	</form>
+		
+
+
+	<ion-fab vertical="bottom" horizontal="end" slot="fixed">
+			<ion-fab-button routerLink="/list" color="secondary">
+				<ion-icon name="checkmark"></ion-icon>
+			</ion-fab-button>
+		</ion-fab>
+
+
 </ion-content>

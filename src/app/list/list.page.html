@@ -11,12 +11,19 @@
     <ion-card *ngFor = "let card of listElem">
 
       <ion-card-header>
-        <ion-icon *ngIf="!card.expanded" style = "float: right; font-size: 30px;"(click)="expandCard(card.id)" name="add"></ion-icon>
-        <ion-icon *ngIf="card.expanded" style = "float: right; font-size: 30px;"(click)="expandCard(card.id)" name="remove"></ion-icon>
-        <ion-card-title>{{card.title}}</ion-card-title>
+          
+        <b>{{card.title}}</b>
+  
+          <div style = "float: right; font-size: 20px;" (click)="expandCard(card.id)">
+            <ion-icon *ngIf="!card.expanded" name="add"></ion-icon>
+            <ion-icon *ngIf="card.expanded" name="remove"></ion-icon>
+          </div>       
+          
+          <ion-progress-bar style = "margin-top: 20px;" value="0.5"></ion-progress-bar>
+
       </ion-card-header>
 
-      <ion-card-content *ngIf = "card.expanded" style = "margin-top: -20px;">
+      <ion-card-content *ngIf = "card.expanded" style = "margin-top: -10px;">
         <ion-list style="background-color: #ffff">
 
           <ion-item *ngFor = "let item of card.items">
