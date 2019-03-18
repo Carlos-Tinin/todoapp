@@ -12,24 +12,29 @@ import { Storage } from '@ionic/storage';
 
 export class CreatePage implements OnInit {
   
-  public subtasks: any[] = [" "];
-  public task: Task = new Task(3);
+  public subtasks: any[] = [];
+  public task: Task = new Task();
 
   constructor(private storage: Storage) {
-    this.storage.length().then((result) => {
-      console.log(result);
-    });
+    
   }
 
   ngOnInit() {
+    this.storage.length().then((result) => {
+      // id = tamanho do length do storage;
+      this.task.id = result;
+    });
   }
 
   addSubTask(){
-    this.subtasks.push(" ");
+    this.subtasks.push({"name": "", "checked": false});
   }
 
-  createTask(title: string, items: any[]) {
-    this.storage.set("" + this.task.id + "", this.task);
-  }
+  createTask() {
+    for (let subtask of this.subtasks) {
+      this.task.subTasks.push(subtask);
+    }
 
+    this.storage.set(""+this.task.id+"", this.task);
+  }
 }

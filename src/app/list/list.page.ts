@@ -2,32 +2,20 @@ import { Component, OnInit } from '@angular/core';
 
 import { Task } from '../model/task';
 
+import { Storage } from '@ionic/storage';
+
 @Component({
   selector: 'app-list',
   templateUrl: './list.page.html',
   styleUrls: ['./list.page.scss'],
 })
 export class ListPage implements OnInit {
-  	tasks: Task[] = [];
+  	public tasks: Task[] = [];
 
-  	constructor() {
-  		let task1 = new Task(0);
-  		let task2 = new Task(1);
-
-  		task1.title = "Fazer atividade física";
-  		task1.subTasks = [
-			{"name": "Correr", "checked": false},
-			{"name": "Pular", "checked": false}
-	  	];
-
-	  	task2.title = "Compras";
-	  	task2.subTasks = [
-			{"name": "Feijão", "checked": false},
-			{"name": "Açucar", "checked": false}
-		];
-
-		this.tasks.push(task1);
-		this.tasks.push(task2);
+  	constructor(private storage: Storage) {
+  		this.storage.forEach((value, key, index) => {
+  			this.tasks.push(value);
+  		});
 	}
 	
 	calculateCardProgressBar(id){
@@ -46,20 +34,38 @@ export class ListPage implements OnInit {
 	}
 
 	deleteTask(id){
-		if (id > -1){
-			this.tasks.splice (id, 1);	
-		}
-		console.log ("delete");
+		this.storage.remove(id).then((result) => {
+			console.log(result);
+			console.log ("delete"+id);
+		});
 	}
 
 	// Deveria fazer/achar método que procura por ID
   	expandCard(id){
 	    if (this.tasks[id].expanded == true){
 	    	this.tasks[id].expanded = false;
-	    	console.log("fecho");
 	    }else {
 	    	this.tasks[id].expanded = true;
-	    	console.log("abriu");
 	    }
+	    this.attTask(id);
   	}
+
+  	doRefresh(event) {
+	    console.log('Begin async operation');
+
+  		this.tasks = [];
+  		this.storage.forEach((value, key, index) => {
+			this.tasks.push(value);
+			console.log(this.tasks);
+		});
+
+	    setTimeout(() => {
+	      console.log('Async operation has ended');
+	      event.target.complete();
+	    }, 1000);
+	}
+
+	attTask(id) {
+		this.storage.set(""+id+"", this.tasks[id]);
+	}
 }

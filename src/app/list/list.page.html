@@ -5,6 +5,14 @@
 </ion-header>
 
 <ion-content padding>
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content
+      pullingIcon="arrow-dropdown"
+      pullingText="Arraste para atualizar"
+      refreshingSpinner="circles"
+      refreshingText="Atualizando...">
+    </ion-refresher-content>
+  </ion-refresher>
 
   <ion-list>
 
@@ -13,7 +21,7 @@
       <ion-card-header>
           
         <b>{{ task.title }}</b>
-        <ion-icon (click) = "deleteTask()" style = "margin-bottom: -3px; margin-left: 4px; font-size: 15px;" *ngIf="task.expanded" name="trash"></ion-icon>
+        <ion-icon (click) = "deleteTask(task.id)" style = "margin-bottom: -3px; margin-left: 4px; font-size: 15px;" *ngIf="task.expanded" name="trash"></ion-icon>
   
           <div style = "float: right; font-size: 20px;" (click)="expandCard(task.id)">
             <ion-icon *ngIf="!task.expanded" name="add"></ion-icon>
@@ -28,7 +36,7 @@
         <ion-list style="background-color: #ffff">
 
           <ion-item *ngFor = "let subtask of task.subTasks">
-            <ion-checkbox color="secondary" [(ngModel)]="subtask.checked"></ion-checkbox>
+            <ion-checkbox (click) = "attTask(task.id)" color="secondary" [(ngModel)]="subtask.checked"></ion-checkbox>
             <ion-label style="margin-left: 5px;">{{ subtask.name }}</ion-label>
           </ion-item>
 
